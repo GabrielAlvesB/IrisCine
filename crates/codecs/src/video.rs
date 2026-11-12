@@ -348,7 +348,7 @@ impl VideoDecoder for H264Decoder {
         }
     }
     fn name(&self) -> &str {
-        "FilmCraft H.264"
+        "IrisCine H.264"
     }
     fn thread_limited(&self) -> bool {
         self.threads < h264_threads()
@@ -469,7 +469,7 @@ impl VideoDecoder for HevcDecoder {
         }
     }
     fn name(&self) -> &str {
-        "FilmCraft HEVC"
+        "IrisCine HEVC"
     }
     fn is_disposable(&self, sample: &[u8]) -> bool {
         hevc_disposable(sample, self.length_size, self.highest_tid)
@@ -597,7 +597,7 @@ impl VideoDecoder for Vp9Decoder {
         self.dec.reset();
     }
     fn name(&self) -> &str {
-        "FilmCraft VP9"
+        "IrisCine VP9"
     }
     fn set_draft(&mut self, on: bool) {
         self.dec.set_draft(on);
@@ -654,7 +654,7 @@ impl VideoDecoder for Vp8Decoder {
         self.dec.reset();
     }
     fn name(&self) -> &str {
-        "FilmCraft VP8"
+        "IrisCine VP8"
     }
     fn is_random_access(&self, sample: &[u8]) -> Option<bool> {
         Some(filmcraft_vp8::is_keyframe(sample))
@@ -743,7 +743,7 @@ impl VideoDecoder for Av1Decoder {
         self.primed = false;
     }
     fn name(&self) -> &str {
-        "FilmCraft AV1"
+        "IrisCine AV1"
     }
     fn set_draft(&mut self, on: bool) {
         self.dec.set_draft(on);
@@ -798,7 +798,7 @@ impl VideoDecoder for ProResDecoder {
     }
     fn reset(&mut self) {}
     fn name(&self) -> &str {
-        "FilmCraft ProRes"
+        "IrisCine ProRes"
     }
     fn intra_only(&self) -> bool {
         true
@@ -866,7 +866,7 @@ impl VideoDecoder for ApvDecoder {
     }
     fn reset(&mut self) {}
     fn name(&self) -> &str {
-        "FilmCraft APV"
+        "IrisCine APV"
     }
     fn intra_only(&self) -> bool {
         true
@@ -938,7 +938,7 @@ impl VideoDecoder for DnxDecoder {
     }
     fn reset(&mut self) {}
     fn name(&self) -> &str {
-        "FilmCraft DNxHD/DNxHR"
+        "IrisCine DNxHD/DNxHR"
     }
     fn intra_only(&self) -> bool {
         true
@@ -1043,7 +1043,7 @@ impl VideoDecoder for Mpeg2Decoder {
         self.prime();
     }
     fn name(&self) -> &str {
-        "FilmCraft MPEG-2"
+        "IrisCine MPEG-2"
     }
     fn is_random_access(&self, sample: &[u8]) -> Option<bool> {
         Some(craft_video::mpeg2::scan_access_unit(sample).is_intra())

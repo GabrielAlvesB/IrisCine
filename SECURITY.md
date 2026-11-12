@@ -1,6 +1,6 @@
 # Security policy
 
-FilmCraft processes untrusted media, projects, interchange files, fonts and presets,
+IrisCine processes untrusted media, projects, interchange files, fonts and presets,
 and provides CLI, control-channel and MCP automation. Security reports about those
 inputs, automation boundaries, dependencies or release artifacts are welcome.
 
@@ -8,13 +8,13 @@ inputs, automation boundaries, dependencies or release artifacts are welcome.
 
 GitHub private vulnerability reporting is not currently enabled for this repository,
 and no dedicated private security address is documented. Contact the maintainers
-through the [project's existing community channels](https://discord.gg/artcraft)
+through an [issue in the IrisCine repository](https://github.com/GabrielAlvesB/IrisCine/issues)
 with a minimal, non-exploitable description and ask for a private transfer method.
 Do not publish a working exploit, malicious attachment, credential, private project,
 or sensitive crash dump in a public issue or chat. Wait for a private channel before
 sharing those details; if none is established, withhold sensitive material.
 
-A useful report includes the FilmCraft version or commit, operating system and
+A useful report includes the IrisCine version or commit, operating system and
 architecture, affected component, impact, reproduction steps, and any workaround.
 For media or project parsing problems, initially describe the file format, size,
 cryptographic hash and whether the sample is synthetic or privately owned. Remove

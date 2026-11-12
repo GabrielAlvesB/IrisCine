@@ -1,8 +1,8 @@
 asset:        filmcraft.svg
-title:        FilmCraft app icon, canonical vector (owl with ear tufts)
-author:       Brandon Thomas (FilmCraft owner), for the FilmCraft project
-source:       original work (drawn by the owner in ArtCraft, then vectorised)
-license:      MIT OR Apache-2.0
+title:        IrisCine app icon, canonical vector (open clapperboard with a play triangle)
+author:       Gabriel Alves Tech, for the IrisCine project
+source:       original work (drawn as SVG for IrisCine)
+license:      Iris brand asset, owned by Gabriel Alves Tech; not covered by the code license
 license-file: assets/app-icon/LICENSE.txt
-added:        2026-10-02 by Claude (agent) for Brandon Thomas
-notes:        SVG traced at 2048 px from the owner's ArtCraft drawing. Three colours: ink #0b0b0c, paper #efe9dc, app colour #8b5cf6; 512 viewBox, rx=112. See assets/app-icon/README.md.
+added:        2026-11-12 by Claude (agent) for Gabriel Alves Tech
+notes:        Replaces FilmCraft's owl icon. Coral → magenta tile #ff6a5c → #bd44c0, plum stripes #4b2148 → #2e1538, white clapperboard; 512 viewBox, rx=112. See assets/app-icon/README.md.

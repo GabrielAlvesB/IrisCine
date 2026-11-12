@@ -165,7 +165,7 @@ fn aaf_separate_aiff_breakout_and_linked() {
         let b = std::fs::read(f).unwrap();
         let m = craft_media::mxf::open(&b).unwrap();
         assert_eq!(m.operational_pattern.name(), "OP-Atom");
-        assert_eq!((m.product_name.as_deref(), m.company_name.as_deref()), (Some("FilmCraft"), Some("FilmCraft")));
+        assert_eq!((m.product_name.as_deref(), m.company_name.as_deref()), (Some("IrisCine"), Some("IrisCine")));
         let t = m.track_of_kind(craft_media::mxf::TrackKind::Sound).unwrap();
         assert_eq!(m.tracks[t].stored_sample_frames(), 48_000);
     }

@@ -1,3 +1,8 @@
+> **IrisCine:** este repositório é uma cópia (fork) do FilmCraft para o ecossistema Iris. Leia
+> primeiro a seção "LEIA PRIMEIRO" do [`CLAUDE.md`](CLAUDE.md): ela vale mais que tudo abaixo
+> (nome, app id, ícone, sem marca ArtCraft, atualizador, instaladores, CI próprio, nomes internos).
+> O que segue veio do FilmCraft.
+
 <!-- craft-house-rules:start core source=dde09ea31e2e457f5b4653a6e76f7cdf55944bdf sha256=540e6cea75d12d0710c3dca89658328e81e508ecef102446ca5bb95b7c0b92bb -->
 ## House rules
 

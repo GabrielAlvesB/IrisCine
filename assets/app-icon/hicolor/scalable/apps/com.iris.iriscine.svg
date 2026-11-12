@@ -1,0 +1,40 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+  <!--
+    IrisCine app icon: an open clapperboard with a play triangle, on the Iris tile. Same drawing
+    language as the IrisWord icon (white glyph on a rounded gradient tile), in a warm coral → magenta
+    gradient (#ff6a5c → #bd44c0) so it reads apart from IrisWord's violet; deep plum stripes. 512 viewBox, rx=112.
+    Every PNG, .ico and .icns in this folder is rendered from this file (packaging/icons.sh).
+  -->
+  <defs>
+    <linearGradient id="g" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#ff6a5c"/>
+      <stop offset="1" stop-color="#bd44c0"/>
+    </linearGradient>
+    <linearGradient id="ink" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#4b2148"/>
+      <stop offset="1" stop-color="#2e1538"/>
+    </linearGradient>
+    <linearGradient id="play" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#ff6a5c"/>
+      <stop offset="1" stop-color="#bd44c0"/>
+    </linearGradient>
+    <clipPath id="arm"><rect width="300" height="56" rx="14"/></clipPath>
+    <clipPath id="band"><rect x="106" y="236" width="300" height="56" rx="14"/></clipPath>
+  </defs>
+  <rect width="512" height="512" rx="112" fill="url(#g)"/>
+  <!-- Body with the fixed striped band on top. -->
+  <rect x="106" y="236" width="300" height="180" rx="28" fill="#fff"/>
+  <g clip-path="url(#band)">
+    <path fill="url(#ink)" d="M106 236h300v56H106z"/>
+    <path fill="#fff" d="M150 236h46l-32 56h-46zM238 236h46l-32 56h-46zM326 236h46l-32 56h-46zM414 236h46l-32 56h-46z"/>
+  </g>
+  <!-- Open arm, hinged at the body's top-left corner. -->
+  <g transform="translate(106 228) rotate(-15) translate(0 -56)">
+    <g clip-path="url(#arm)">
+      <path fill="url(#ink)" d="M0 0h300v56H0z"/>
+      <path fill="#fff" d="M44 0h46l-32 56h-46zM132 0h46l-32 56h-46zM220 0h46l-32 56h-46zM308 0h46l-32 56h-46z"/>
+    </g>
+  </g>
+  <!-- Play. -->
+  <path fill="url(#play)" d="M228 318v70a10 10 0 0 0 15 8.7l61-35a10 10 0 0 0 0-17.4l-61-35a10 10 0 0 0-15 8.7z"/>
+</svg>

@@ -1,4 +1,4 @@
-//! The FilmCraft egui frontend.
+//! The IrisCine egui frontend (IrisCine is a fork of FilmCraft; see CLAUDE.md).
 //!
 //! Thin by design: all project changes go through `filmcraft_engine::Session::execute`; this crate
 //! owns only presentation state ([`state::UiState`]), GPU textures, the playback clock and the
@@ -6,12 +6,19 @@
 
 #![cfg_attr(not(test), deny(clippy::unwrap_used, clippy::expect_used, clippy::panic, clippy::unimplemented, clippy::todo, clippy::unreachable))]
 
-/// FilmCraft as craft-update knows it, with its 128 px icon and accent colour: the update
-/// prompt shows both, and an AppImage's menu entry gets the icon.
+/// IrisCine as craft-update knows it, with its 128 px icon and accent colour: the update
+/// prompt shows both, and an AppImage's menu entry gets the icon. Updates come only from the
+/// IrisCine repository, never from upstream FilmCraft (which would replace this build with it).
+/// `repo` is spelt exactly as GitHub returns it: download links are checked case-sensitively.
 #[cfg(not(target_arch = "wasm32"))]
 pub const UPDATE_APP: craft_update::app::App = craft_update::app::App {
-    icon_png: Some(include_bytes!("../../../assets/app-icon/hicolor/128x128/apps/ai.storyteller.filmcraft.png")),
-    accent: Some([0x8b, 0x5c, 0xf6]),
+    name: "IrisCine",
+    tagline: "Video editing, color and sound",
+    repo: "GabrielAlvesB/IrisCine",
+    developer: "Gabriel Alves Tech",
+    bundle_id_override: Some("com.iris.iriscine"),
+    icon_png: Some(include_bytes!("../../../assets/app-icon/hicolor/128x128/apps/com.iris.iriscine.png")),
+    accent: Some([0xd9, 0x50, 0x7e]),
     ..craft_update::suite::FILMCRAFT
 };
 
@@ -39,7 +46,6 @@ macro_rules! tlf {
 }
 
 pub mod automation;
-pub mod brand;
 pub mod calc;
 pub mod capture;
 mod cjk;

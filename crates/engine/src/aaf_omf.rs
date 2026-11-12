@@ -330,7 +330,7 @@ pub fn prepare_audio(s: &Session, seq: ItemId, plan: &AudioPlan, media_dir: &str
                             ids: craft_media::mxf::PackageIds::from_seed(&path, &name),
                             timecode: None,
                         };
-                        craft_media::mxf::write_opatom_pcm_as(&opts, &samples, "FilmCraft", "FilmCraft", env!("CARGO_PKG_VERSION"))
+                        craft_media::mxf::write_opatom_pcm_as(&opts, &samples, "IrisCine", "IrisCine", env!("CARGO_PKG_VERSION"))
                             .map_err(|e| EngineError::Other(format!("{path}: {e}")))?
                     } else if plan.aiff {
                         filmcraft_interchange::wav::aiff_file(&pcm, n as u16, plan.sample_rate, plan.bits)

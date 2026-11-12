@@ -53,7 +53,7 @@ fn shortcut_tables_have_no_key_used_twice_in_one_scope() {
             }
         }
     }
-    // the FilmCraft Default set (registry defaults + panel tables + the Premiere audit) has no
+    // the IrisCine Default set (registry defaults + panel tables + the Premiere audit) has no
     // same-context conflicts for the new commands either
     let s = Session::default();
     let new_ids: Vec<&str> = keyboard::commands().iter().map(|c| c.id).collect();

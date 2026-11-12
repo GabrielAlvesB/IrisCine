@@ -1,12 +1,12 @@
 name: Feature request
-description: Suggest an improvement to a FilmCraft workflow.
+description: Suggest an improvement to a IrisCine workflow.
 labels: [enhancement]
 body:
   - type: markdown
     attributes:
       value: |
         Please search existing issues and describe one feature per request.
-        For usage questions, visit the [community chat](https://discord.gg/artcraft).
+        For usage questions, open a discussion in the IrisCine repository.
   - type: textarea
     id: problem
     attributes:

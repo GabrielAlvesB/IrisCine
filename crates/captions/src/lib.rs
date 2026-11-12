@@ -18,7 +18,7 @@ pub use craft_captions::*;
 use filmcraft_project::{Caption, CaptionFormat, CaptionTrack, ClipId, TrackId};
 
 /// The creating program FilmCraft's MCC and EBU STL files name.
-pub const PROGRAM: &str = "FilmCraft";
+pub const PROGRAM: &str = "IrisCine";
 
 /// Write options with FilmCraft as the creating program.
 pub fn write_options(drop_frame: bool, rate: Option<FrameRate>) -> WriteOptions {
@@ -95,7 +95,7 @@ mod tests {
             ..Default::default()
         };
         let mcc = String::from_utf8(write(&doc, Format::Mcc, write_options(true, None))).unwrap();
-        assert!(mcc.contains("Creation Program=FilmCraft"), "{mcc}");
+        assert!(mcc.contains("Creation Program=IrisCine"), "{mcc}");
         let stl = write(&doc, Format::Stl, write_options(false, None));
         assert!(stl.windows(PROGRAM.len()).any(|w| w == PROGRAM.as_bytes()));
     }

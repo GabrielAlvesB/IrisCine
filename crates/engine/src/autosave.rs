@@ -502,8 +502,8 @@ pub fn portable_data_dir(exe_dir: &Path) -> Option<PathBuf> {
 
 /// The data directory. `FILMCRAFT_DATA_DIR` overrides; a portable install ([`PORTABLE_MARKER`] next
 /// to the executable) uses `<exe dir>/data`; otherwise the per-user directory:
-/// macOS `~/Library/Application Support/FilmCraft`, Windows `%APPDATA%\FilmCraft`,
-/// elsewhere `$XDG_DATA_HOME/filmcraft` or `~/.local/share/filmcraft`.
+/// macOS `~/Library/Application Support/IrisCine`, Windows `%APPDATA%\IrisCine`,
+/// elsewhere `$XDG_DATA_HOME/iriscine` or `~/.local/share/iriscine` (IrisCine: never FilmCraft's folders).
 pub fn default_data_dir() -> Option<PathBuf> {
     let env = |k: &str| std::env::var_os(k).filter(|v| !v.is_empty()).map(PathBuf::from);
     if let Some(d) = env("FILMCRAFT_DATA_DIR") {
@@ -513,12 +513,12 @@ pub fn default_data_dir() -> Option<PathBuf> {
         return Some(d);
     }
     if cfg!(target_os = "macos") {
-        return env("HOME").map(|h| h.join("Library/Application Support/FilmCraft"));
+        return env("HOME").map(|h| h.join("Library/Application Support/IrisCine"));
     }
     if cfg!(windows) {
-        return env("APPDATA").map(|h| h.join("FilmCraft"));
+        return env("APPDATA").map(|h| h.join("IrisCine"));
     }
-    env("XDG_DATA_HOME").map(|d| d.join("filmcraft")).or_else(|| env("HOME").map(|h| h.join(".local/share/filmcraft")))
+    env("XDG_DATA_HOME").map(|d| d.join("iriscine")).or_else(|| env("HOME").map(|h| h.join(".local/share/iriscine")))
 }
 
 pub fn unix_now() -> i64 {

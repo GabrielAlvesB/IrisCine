@@ -1,0 +1,130 @@
+name: Packages
+
+# Builds the IrisCine installers and uploads them as workflow artifacts (it never publishes a
+# release): the Windows MSI and portable ZIP, and the Linux AppImage, .deb, .rpm and .tar.gz, plus
+# SHA256SUMS.txt. Self-contained like ci.yml: no secrets (the builds are unsigned), a read-only
+# token, third-party actions pinned by SHA, craft-fonts at the commit in craft-fonts.rev.
+
+on:
+  workflow_dispatch:
+  push:
+    branches: ["update-filmcraft-*"]
+    tags: ["v*"]
+
+permissions:
+  contents: read
+
+env:
+  CRAFT_FONTS_REQUIRED: "1"
+
+concurrency:
+  group: packages-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  linux:
+    # The oldest supported runner, so the binaries need only glibc 2.35 and run on newer distros.
+    runs-on: ubuntu-22.04
+    timeout-minutes: 150
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+
+      - name: Build dependencies
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y pkg-config libxkbcommon-dev libwayland-dev libx11-dev libxcb1-dev \
+            libxcursor-dev libxrandr-dev libxi-dev libfontconfig1-dev libfreetype-dev libasound2-dev \
+            zsync desktop-file-utils appstream
+
+      - name: nfpm (pinned, checked)
+        run: |
+          curl --proto '=https' -fsSL -o "$RUNNER_TEMP/nfpm.tar.gz" \
+            https://github.com/goreleaser/nfpm/releases/download/v2.48.0/nfpm_2.48.0_Linux_x86_64.tar.gz
+          echo "6d7f9a28b2f397934403950fcbba83f598b08d02edbe79a0815b3b4897341750  $RUNNER_TEMP/nfpm.tar.gz" | sha256sum -c -
+          mkdir -p "$RUNNER_TEMP/bin"
+          tar -xzf "$RUNNER_TEMP/nfpm.tar.gz" -C "$RUNNER_TEMP/bin" nfpm
+          echo "$RUNNER_TEMP/bin" >> "$GITHUB_PATH"
+
+      # Interface fonts (Arabic, Japanese, Chinese, Thai…; OFL), at the commit pinned in craft-fonts.rev.
+      - name: craft-fonts
+        shell: bash
+        run: |
+          git init -q "$RUNNER_TEMP/craft-fonts"
+          git -C "$RUNNER_TEMP/craft-fonts" fetch -q --depth 1 https://github.com/storytold/craft-fonts "$(cat craft-fonts.rev)"
+          git -C "$RUNNER_TEMP/craft-fonts" checkout -q FETCH_HEAD
+          echo "CRAFT_FONTS_DIR=$RUNNER_TEMP/craft-fonts" >> "$GITHUB_ENV"
+
+      - uses: dtolnay/rust-toolchain@b725eda525362e7cf34af9a7243cac1e3f01a7ec # stable
+
+      - name: Package (AppImage, deb, rpm, tar.gz)
+        run: packaging/linux/package.sh --formats "appimage deb rpm tar"
+
+      - uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9 # v7.0.2
+        with:
+          name: iriscine-linux-x86_64
+          path: dist/release/*
+          if-no-files-found: error
+
+  windows:
+    runs-on: windows-latest
+    timeout-minutes: 150
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+
+      # Interface fonts (Arabic, Japanese, Chinese, Thai…; OFL), at the commit pinned in craft-fonts.rev.
+      - name: craft-fonts
+        shell: bash
+        run: |
+          git init -q "$RUNNER_TEMP/craft-fonts"
+          git -C "$RUNNER_TEMP/craft-fonts" fetch -q --depth 1 https://github.com/storytold/craft-fonts "$(cat craft-fonts.rev)"
+          git -C "$RUNNER_TEMP/craft-fonts" checkout -q FETCH_HEAD
+          echo "CRAFT_FONTS_DIR=$RUNNER_TEMP/craft-fonts" >> "$GITHUB_ENV"
+
+      - uses: dtolnay/rust-toolchain@b725eda525362e7cf34af9a7243cac1e3f01a7ec # stable
+        with:
+          targets: x86_64-pc-windows-msvc
+
+      - name: WiX 5
+        run: |
+          dotnet tool install --global wix --version 5.0.2
+          wix extension add -g WixToolset.UI.wixext/5.0.2
+          wix extension add -g WixToolset.Util.wixext/5.0.2
+
+      # Unsigned: no signing secrets are passed, so sign.ps1 only warns.
+      - name: Package (MSI, portable ZIP)
+        shell: pwsh
+        run: ./packaging/windows/package.ps1 -Arch x64
+
+      - uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9 # v7.0.2
+        with:
+          name: iriscine-windows-x64
+          path: |
+            dist/release/*.msi
+            dist/release/*-portable.zip
+          if-no-files-found: error
+
+  sums:
+    needs: [linux, windows]
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/download-artifact@9000827ccba6bdab643e8b6fd33ac0654aef8333 # v8.0.2
+        with:
+          path: release
+          merge-multiple: true
+
+      # `hash  name` (two spaces, no `*`): the Iris Workspace installs only with this file.
+      - name: SHA256SUMS.txt
+        working-directory: release
+        run: |
+          sha256sum -- * | sed 's/ \*/  /' > SHA256SUMS.txt
+          cat SHA256SUMS.txt
+
+      - uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9 # v7.0.2
+        with:
+          name: iriscine-release
+          path: release/*
+          if-no-files-found: error
