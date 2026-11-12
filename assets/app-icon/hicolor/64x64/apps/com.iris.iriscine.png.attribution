@@ -1,0 +1,8 @@
+asset:        com.iris.iriscine.png
+title:        IrisCine app icon, Linux hicolor theme 64 px
+author:       Gabriel Alves Tech, for the IrisCine project
+source:       original work (drawn as SVG for IrisCine)
+license:      Iris brand asset, owned by Gabriel Alves Tech; not covered by the code license
+license-file: assets/app-icon/LICENSE.txt
+added:        2026-11-12 by Claude (agent) for Gabriel Alves Tech
+notes:        Rendered from filmcraft.svg with resvg by packaging/icons.sh.

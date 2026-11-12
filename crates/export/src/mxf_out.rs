@@ -11,8 +11,8 @@ use crate::{ColorSignal, EncodedPacket, ExportError, ExportSettings, Format, H26
 
 /// The identification set FilmCraft's MXF files carry (company, product, version).
 fn named(cfg: &mut WriterConfig) {
-    cfg.company = "FilmCraft".into();
-    cfg.product = "FilmCraft".into();
+    cfg.company = "IrisCine".into();
+    cfg.product = "IrisCine".into();
     cfg.version = env!("CARGO_PKG_VERSION").into();
 }
 

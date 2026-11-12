@@ -1,7 +1,7 @@
 {
   "id": "filmcraft",
-  "name": "FilmCraft",
-  "upgradeCode": "31E6FB14-9DBC-41DD-B24B-26B71FB31B62",
+  "name": "IrisCine",
+  "upgradeCode": "15D7DE0B-5986-47A0-B84F-26EDE25E142B",
   "sources": [
     "filmcraft.wxs"
   ],

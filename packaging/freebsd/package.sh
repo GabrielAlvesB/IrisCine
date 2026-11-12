@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-# Build and package FilmCraft for FreeBSD:
+# Build and package IrisCine for FreeBSD:
 #
 #   $DIST/filmcraft-<version>-freebsd-<arch>.tar.gz   (arch: x86_64 or aarch64) a /usr/local-style tree:
 #       filmcraft-<version>-freebsd-<arch>/{bin, share/applications, share/icons, share/mime,
@@ -16,7 +16,7 @@ set -euo pipefail
 # shellcheck source=../env.sh
 . "$(dirname "${BASH_SOURCE[0]}")/../env.sh"
 LINUX="$ROOT/packaging/linux"
-APP_ID=ai.storyteller.filmcraft
+APP_ID=com.iris.iriscine
 
 SKIP_BUILD=0
 DRY_RUN=0
@@ -51,7 +51,7 @@ if [[ "$DRY_RUN" = 0 ]] && [[ "$(uname -s)" != FreeBSD ]]; then
 fi
 BASENAME="filmcraft-$VERSION-freebsd-$ARCH"
 
-echo "==> FilmCraft $VERSION for FreeBSD $ARCH"
+echo "==> IrisCine $VERSION for FreeBSD $ARCH"
 
 # The release VM has 12 GB; full parallelism on the biggest crates runs it out of memory.
 export CARGO_BUILD_JOBS="${CARGO_BUILD_JOBS:-4}"

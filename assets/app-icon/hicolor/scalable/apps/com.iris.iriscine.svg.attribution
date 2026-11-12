@@ -1,0 +1,8 @@
+asset:        com.iris.iriscine.svg
+title:        IrisCine app icon, Linux hicolor theme scalable
+author:       Gabriel Alves Tech, for the IrisCine project
+source:       original work (drawn as SVG for IrisCine)
+license:      Iris brand asset, owned by Gabriel Alves Tech; not covered by the code license
+license-file: assets/app-icon/LICENSE.txt
+added:        2026-11-12 by Claude (agent) for Gabriel Alves Tech
+notes:        Copy of filmcraft-small.svg, made by packaging/icons.sh.
