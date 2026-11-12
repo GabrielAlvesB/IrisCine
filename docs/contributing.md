@@ -55,8 +55,8 @@ playback and codec speed, use `--release`.
 ### Logs
 
 The desktop app writes its `log` records to standard error and to `Logs/filmcraft.log` in the data
-directory (`~/.local/share/filmcraft/Logs/` or `$XDG_DATA_HOME/filmcraft/Logs/` on Linux,
-`~/Library/Application Support/FilmCraft/Logs/` on macOS, `%APPDATA%\FilmCraft\Logs\` on Windows,
+directory (`~/.local/share/iriscine/Logs/` or `$XDG_DATA_HOME/iriscine/Logs/` on Linux,
+`~/Library/Application Support/IrisCine/Logs/` on macOS, `%APPDATA%\IrisCine\Logs\` on Windows,
 or under `--data-dir` / `FILMCRAFT_DATA_DIR`), next to the crash logs; Help ▸ Reveal Log Files opens
 the folder. A start from a desktop menu or the Dock has no terminal, so this file is what to attach
 to a bug report: GPU compositor fallbacks, audio output problems, panicked frame jobs and container

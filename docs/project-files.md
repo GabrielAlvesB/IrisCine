@@ -193,8 +193,8 @@ Premiere's auto-save can lose up to one interval of work. FilmCraft also keeps a
 Desktop flags: `--recover` recovers the newest candidate without asking. `--no-recover` starts
 without asking; the changes stay available through File ▸ Recover Unsaved Changes…. `--data-dir
 <dir>` (or `FILMCRAFT_DATA_DIR`) moves the data directory. The default is `~/Library/Application
-Support/FilmCraft` on macOS, `%APPDATA%\FilmCraft` on Windows, and `$XDG_DATA_HOME/filmcraft` or
-`~/.local/share/filmcraft` elsewhere. A `portable.txt` file next to the executable (the Windows
+Support/IrisCine` on macOS, `%APPDATA%\IrisCine` on Windows, and `$XDG_DATA_HOME/iriscine` or
+`~/.local/share/iriscine` elsewhere. A `portable.txt` file next to the executable (the Windows
 portable zip ships one) makes it `data` next to the executable instead.
 
 ### Effect Presets
