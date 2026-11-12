@@ -56,5 +56,18 @@ jobs:
       - name: Asset attribution
         run: cargo xtask assets
 
+      # nextest runs every test in a process of its own, like FilmCraft's CI. Under `cargo test`
+      # the GPU tests share one process and Mesa's software Vulkan driver (llvmpipe) on the Linux
+      # runner crashes with SIGSEGV. The version is the one .config/nextest.toml requires.
+      - name: cargo-nextest
+        shell: bash
+        run: |
+          if ! cargo nextest --version 2>/dev/null | grep -q '^cargo-nextest 0\.9\.150\b'; then
+            cargo install cargo-nextest --version 0.9.150 --locked --force
+          fi
+
       - name: Tests
-        run: cargo test --workspace --no-fail-fast
+        run: cargo nextest run --workspace --lib --bins --tests --no-fail-fast
+
+      - name: Doctests
+        run: cargo test --workspace --doc
