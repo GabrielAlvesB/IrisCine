@@ -373,8 +373,8 @@ fn app_creator(launch: Launch, graphics: graphics::GraphicsStart, created: Arc<A
             }
         }
         let mut app = FilmcraftApp::new(session);
-        // IrisCine: off until GabrielAlvesB/IrisCine publishes releases (see CLAUDE.md).
-        app.set_startup_update_check(false);
+        // IrisCine: checks GabrielAlvesB/IrisCine releases at startup (see CLAUDE.md).
+        app.set_startup_update_check(true);
         app.graphics_notice = notice;
         if recover == Some(false) {
             app.dialog = None;
